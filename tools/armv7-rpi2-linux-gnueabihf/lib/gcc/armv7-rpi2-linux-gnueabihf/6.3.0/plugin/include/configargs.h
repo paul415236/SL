@@ -1,0 +1,7 @@
+/* Generated automatically. */
+static const char configuration_arguments[] = "/home/paul/crosstool/script/.build/src/gcc-6.3.0/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=armv7-rpi2-linux-gnueabihf --prefix=/home/paul/x-tools/armv7-rpi2-linux-gnueabihf --with-sysroot=/home/paul/x-tools/armv7-rpi2-linux-gnueabihf/armv7-rpi2-linux-gnueabihf/sysroot --enable-languages=c,c++ --with-cpu=cortex-a7 --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG crosstool-ng-1.23.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/home/paul/crosstool/script/.build/armv7-rpi2-linux-gnueabihf/buildtools --with-mpfr=/home/paul/crosstool/script/.build/armv7-rpi2-linux-gnueabihf/buildtools --with-mpc=/home/paul/crosstool/script/.build/armv7-rpi2-linux-gnueabihf/buildtools --with-isl=/home/paul/crosstool/script/.build/armv7-rpi2-linux-gnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/home/paul/x-tools/armv7-rpi2-linux-gnueabihf/armv7-rpi2-linux-gnueabihf/sysroot --enable-long-long";
+static const char thread_model[] = "posix";
+
+static const struct {
+  const char *name, *value;
+} configure_default_options[] = { { "cpu", "cortex-a7" }, { "float", "hard" }, { "fpu", "neon-vfpv4" }, { "tls", "gnu" } };
