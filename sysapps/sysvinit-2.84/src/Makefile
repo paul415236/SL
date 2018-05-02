@@ -28,8 +28,8 @@ INSTALL		= install -o $(BIN_OWNER) -g $(BIN_GROUP)
 MANDIR		= /usr/share/man
 
 # Additional libs for Gnu Libc
-ifneq ($(wildcard /usr/lib/libcrypt.a),) #Paul
-#ifndef ($(/home/paul/SL/tools/armv7-rpi2-linux-gnueabihf/armv7-rpi2-linux-gnueabihf/sysroot/usr/lib/libcrypt.a),)
+#ifneq ($(wildcard /usr/lib/libcrypt.a),) #Paul
+ifndef ($(/home/paul/SL/tools/armv7-rpi2-linux-gnueabihf/armv7-rpi2-linux-gnueabihf/sysroot/usr/lib/libcrypt.a),)
 LCRYPT		= -lcrypt
 endif
 
