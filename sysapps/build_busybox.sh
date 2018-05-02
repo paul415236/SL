@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PWD=$(pwd)
+ARCHITECTURE=arm
+TOOLCHAIN=armv7-rpi2-linux-gnueabihf-
+TARGET_PREFIX=$PWD/../rootfs
+
+BUSYBOX=busybox-1.28.2
+
+export PATH=/home/paul/SL/tools/armv7-rpi2-linux-gnueabihf/bin:$PATH
+
+cd $BUSYBOX
+
+#make -j4 ARCH=$ARCHITECTURE CROSS_COMPILE=$TOOLCHAIN defconfig
+#make -j4 ARCH=$ARCHITECTURE CROSS_COMPILE=$TOOLCHAIN menuconfig
+make -j4 ARCH=$ARCHITECTURE CROSS_COMPILE=$TOOLCHAIN clean
+make -j4 ARCH=$ARCHITECTURE CROSS_COMPILE=$TOOLCHAIN
+make ARCH=$ARCHITECTURE CROSS_COMPILE=$TOOLCHAIN CONFIG_PREFIX=$TARGET_PREFIX install
