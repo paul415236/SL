@@ -1,0 +1,1082 @@
+--------------------
+./configure --shared
+Thu May  3 11:07:21 CST 2018
+=== ztest28788.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest28788.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest28788.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest28788.c
+
+Checking for shared library support...
+=== ztest28788.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest28788.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest28788.so ztest28788.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest28788.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest28788.c
+Checking for size_t... Yes.
+
+
+=== ztest28788.c ===
+#include <sys/types.h>
+off64_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+
+=== ztest28788.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest28788 ztest28788.c
+Checking for strerror... Yes.
+
+=== ztest28788.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking for unistd.h... Yes.
+
+=== ztest28788.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking for stdarg.h... Yes.
+
+=== ztest28788.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest28788.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest28788 ztest28788.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest28788.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest28788.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28788.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared all64
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared test64
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --shared
+Thu May  3 11:08:51 CST 2018
+=== ztest28915.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest28915.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest28915.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest28915.c
+
+Checking for shared library support...
+=== ztest28915.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest28915.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest28915.so ztest28915.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest28915.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest28915.c
+Checking for size_t... Yes.
+
+
+=== ztest28915.c ===
+#include <sys/types.h>
+off64_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+
+=== ztest28915.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest28915 ztest28915.c
+Checking for strerror... Yes.
+
+=== ztest28915.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking for unistd.h... Yes.
+
+=== ztest28915.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking for stdarg.h... Yes.
+
+=== ztest28915.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest28915.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest28915 ztest28915.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest28915.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest28915.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest28915.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared all64
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared test64
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --shared
+Thu May  3 11:26:01 CST 2018
+=== ztest29454.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest29454.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest29454.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest29454.c
+
+Checking for shared library support...
+=== ztest29454.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest29454.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest29454.so ztest29454.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest29454.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest29454.c
+Checking for size_t... Yes.
+
+
+=== ztest29454.c ===
+#include <sys/types.h>
+off64_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+
+=== ztest29454.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest29454 ztest29454.c
+Checking for strerror... Yes.
+
+=== ztest29454.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking for unistd.h... Yes.
+
+=== ztest29454.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking for stdarg.h... Yes.
+
+=== ztest29454.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest29454.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -D_LARGEFILE64_SOURCE=1 -o ztest29454 ztest29454.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest29454.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest29454.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 -D_LARGEFILE64_SOURCE=1 ztest29454.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared all64
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared test64
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --shared
+Thu May  3 11:28:23 CST 2018
+=== ztest29960.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest29960.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest29960.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest29960.c
+
+Checking for shared library support...
+=== ztest29960.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest29960.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest29960.so ztest29960.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest29960.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest29960.c
+Checking for size_t... Yes.
+
+
+Checking for off64_t... No.
+
+=== ztest29960.c ===
+
+#include <stdio.h>
+int main(void) {
+  fseeko(NULL, 0, 0);
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest29960 ztest29960.c
+Checking for fseeko... Yes.
+--------------------
+./configure --shared
+Thu May  3 11:29:10 CST 2018
+=== ztest30159.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest30159.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest30159.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30159.c
+
+Checking for shared library support...
+=== ztest30159.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest30159.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest30159.so ztest30159.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest30159.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30159.c
+Checking for size_t... Yes.
+
+
+Checking for off64_t... No.
+
+=== ztest30159.c ===
+
+#include <stdio.h>
+int main(void) {
+  fseeko(NULL, 0, 0);
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30159 ztest30159.c
+Checking for fseeko... Yes.
+--------------------
+./configure --shared
+Thu May  3 11:30:03 CST 2018
+=== ztest30277.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest30277.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest30277.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+
+Checking for shared library support...
+=== ztest30277.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest30277.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest30277.so ztest30277.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest30277.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking for size_t... Yes.
+
+
+Checking for off64_t... No.
+
+=== ztest30277.c ===
+
+#include <stdio.h>
+int main(void) {
+  fseeko(NULL, 0, 0);
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30277 ztest30277.c
+Checking for fseeko... Yes.
+
+=== ztest30277.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30277 ztest30277.c
+Checking for strerror... Yes.
+
+=== ztest30277.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking for unistd.h... Yes.
+
+=== ztest30277.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking for stdarg.h... Yes.
+
+=== ztest30277.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest30277.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30277 ztest30277.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest30277.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest30277.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30277.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3 -DHAVE_HIDDEN
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --shared
+Thu May  3 11:30:26 CST 2018
+=== ztest30438.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest30438.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest30438.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+
+Checking for shared library support...
+=== ztest30438.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest30438.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest30438.so ztest30438.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest30438.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking for size_t... Yes.
+
+
+Checking for off64_t... No.
+
+=== ztest30438.c ===
+
+#include <stdio.h>
+int main(void) {
+  fseeko(NULL, 0, 0);
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30438 ztest30438.c
+Checking for fseeko... Yes.
+
+=== ztest30438.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30438 ztest30438.c
+Checking for strerror... Yes.
+
+=== ztest30438.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking for unistd.h... Yes.
+
+=== ztest30438.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking for stdarg.h... Yes.
+
+=== ztest30438.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest30438.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30438 ztest30438.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest30438.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking for return value of vsnprintf()... Yes.
+
+=== ztest30438.c ===
+#define ZLIB_INTERNAL __attribute__((visibility ("hidden")))
+int ZLIB_INTERNAL foo;
+int main()
+{
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30438.c
+Checking for attribute(visibility) support... Yes.
+
+ALL = static shared
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3 -DHAVE_HIDDEN
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC -DHAVE_HIDDEN
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+
+--------------------
+./configure --shared
+Thu May  3 11:31:26 CST 2018
+=== ztest30727.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c ztest30727.c
+... using gcc
+
+Checking for obsessive-compulsive compiler options...
+=== ztest30727.c ===
+int foo() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+
+Checking for shared library support...
+=== ztest30727.c ===
+extern int getchar();
+int hello() {return getchar();}
+===
+armv7-rpi2-linux-gnueabihf-gcc -w -c -O3 -fPIC ztest30727.c
+armv7-rpi2-linux-gnueabihf-ld -shared -O3 -fPIC -o ztest30727.so ztest30727.o
+Building shared library libz.so.1.2.11 with armv7-rpi2-linux-gnueabihf-gcc.
+
+=== ztest30727.c ===
+#include <stdio.h>
+#include <stdlib.h>
+size_t dummy = 0;
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+Checking for size_t... Yes.
+
+
+Checking for off64_t... No.
+
+=== ztest30727.c ===
+
+#include <stdio.h>
+int main(void) {
+  fseeko(NULL, 0, 0);
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30727 ztest30727.c
+Checking for fseeko... Yes.
+
+=== ztest30727.c ===
+#include <string.h>
+#include <errno.h>
+int main() { return strlen(strerror(errno)); }
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30727 ztest30727.c
+Checking for strerror... Yes.
+
+=== ztest30727.c ===
+#include <unistd.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+Checking for unistd.h... Yes.
+
+=== ztest30727.c ===
+#include <stdarg.h>
+int main() { return 0; }
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+Checking for stdarg.h... Yes.
+
+=== ztest30727.c ===
+#include <stdio.h>
+#include <stdarg.h>
+#include "zconf.h"
+int main()
+{
+#ifndef STDC
+  choke me
+#endif
+  return 0;
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+
+=== ztest30727.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return 0;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -O3 -o ztest30727 ztest30727.c
+Checking for vsnprintf() in stdio.h... Yes.
+
+=== ztest30727.c ===
+#include <stdio.h>
+#include <stdarg.h>
+int mytest(const char *fmt, ...)
+{
+  int n;
+  char buf[20];
+  va_list ap;
+  va_start(ap, fmt);
+  n = vsnprintf(buf, sizeof(buf), fmt, ap);
+  va_end(ap);
+  return n;
+}
+int main()
+{
+  return (mytest("Hello%d\n", 1));
+}
+===
+armv7-rpi2-linux-gnueabihf-gcc -c -O3 ztest30727.c
+Checking for return value of vsnprintf()... Yes.
+
+Checking for attribute(visibility) support... No.
+
+ALL = static shared
+AR = ar
+ARFLAGS = rc
+CC = armv7-rpi2-linux-gnueabihf-gcc
+CFLAGS = -O3
+CPP = armv7-rpi2-linux-gnueabihf-gcc -E
+EXE =
+LDCONFIG = ldconfig
+LDFLAGS =
+LDSHARED = armv7-rpi2-linux-gnueabihf-ld -shared
+LDSHAREDLIBC = -lc
+OBJC = $(OBJZ) $(OBJG)
+PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
+RANLIB = ranlib
+SFLAGS = -O3 -fPIC
+SHAREDLIB = libz.so
+SHAREDLIBM = libz.so.1
+SHAREDLIBV = libz.so.1.2.11
+STATICLIB = libz.a
+TEST = all teststatic testshared
+VER = 1.2.11
+Z_U4 =
+SRCDIR =
+exec_prefix = ${prefix}
+includedir = ${prefix}/include
+libdir = ${exec_prefix}/lib
+mandir = ${prefix}/share/man
+prefix = /usr/local
+sharedlibdir = ${libdir}
+uname = Linux
+--------------------
+
+

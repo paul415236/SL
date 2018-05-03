@@ -1,0 +1,4 @@
+# /etc/fstab
+# device	path	type	option
+/dev/nfs	/		nfs		defaults
+none		/proc	proc	defaults
